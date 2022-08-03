@@ -14,7 +14,7 @@ import (
 )
 
 var Analyzers = lint.InitializeAnalyzers(Docs, map[string]*analysis.Analyzer{
-	"TAGFMT1000": {
+	"ST1001": {
 		Run:      CheckStructTags,
 		Requires: []*analysis.Analyzer{inspect.Analyzer},
 	},

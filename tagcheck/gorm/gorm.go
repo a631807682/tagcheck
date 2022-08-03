@@ -33,13 +33,13 @@ func CheckTag(pass *analysis.Pass, field *ast.Field, tag string) {
 
 		gt, ok := gormTagMap[strings.ToUpper(fkey)]
 		if !ok {
-			report.Report(pass, field.Tag, fmt.Sprintf("Gorm tag not support option %s", fkey))
+			report.Report(pass, field.Tag, fmt.Sprintf("not support Gorm option %q", fkey))
 			continue
 		}
 
 		err := gt.checker.check(fvalue)
 		if err != nil {
-			report.Report(pass, field.Tag, fmt.Sprintf("Gorm tag not support value:%q option:%s", fvalue, fkey))
+			report.Report(pass, field.Tag, fmt.Sprintf("not support Gorm value:%q option:%q", fvalue, fkey))
 			continue
 		}
 

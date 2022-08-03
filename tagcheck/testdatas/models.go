@@ -90,7 +90,7 @@ type Parent struct {
 
 type Child struct {
 	gorm.Model
-	Name     string
+	Name     string `gorm:"column:name;column:nam"`
 	ParentID *uint
 	Parent   *Parent
 }
