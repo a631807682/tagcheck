@@ -9,10 +9,6 @@ import (
 	"honnef.co/go/tools/analysis/report"
 )
 
-func init() {
-	initGormTagChecker()
-}
-
 func CheckTag(pass *analysis.Pass, field *ast.Field, tag string) {
 	if len(tag) == 0 {
 		return
