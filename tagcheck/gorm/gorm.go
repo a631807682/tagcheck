@@ -14,39 +14,39 @@ func CheckTag(pass *analysis.Pass, field *ast.Field, tag string) {
 		return
 	}
 
-	fields := strings.Split(tag, ";")
+	options := strings.Split(tag, ";")
 
-	options := make(map[string]int)
-	for _, f := range fields {
-		fkey := strings.TrimSpace(f)
-		if len(fkey) == 0 { //is space
+	optionNums := make(map[string]int)
+	for _, o := range options {
+		optKey := strings.TrimSpace(o)
+		if len(optKey) == 0 { //is space
 			continue
 		}
-		fvalue := ""
-		if i := strings.Index(f, ":"); i >= 0 {
-			fkey = f[:i]
-			fvalue = f[i+1:]
+		optVal := ""
+		if i := strings.Index(o, ":"); i >= 0 {
+			optKey = o[:i]
+			optVal = o[i+1:]
 		}
 
-		fkey = strings.TrimSpace(fkey)
-		fvalue = strings.TrimSpace(fvalue)
+		optKey = strings.TrimSpace(optKey)
+		optVal = strings.TrimSpace(optVal)
 
-		gt, ok := gormTagMap[strings.ToUpper(fkey)]
+		gt, ok := gormTagMap[strings.ToUpper(optKey)]
 		if !ok {
-			report.Report(pass, field.Tag, fmt.Sprintf("not support Gorm option %q", fkey))
+			report.Report(pass, field.Tag, fmt.Sprintf("not support Gorm option %q", optKey))
 			continue
 		}
 
-		err := gt.checker.check(fvalue)
+		err := gt.checker.check(optVal)
 		if err != nil {
-			report.Report(pass, field.Tag, fmt.Sprintf("not support Gorm value:%q err:%q", fvalue, err.Error()))
+			report.Report(pass, field.Tag, fmt.Sprintf("not support Gorm value:%q err:%q", optVal, err.Error()))
 			continue
 		}
 
-		options[fkey]++
+		optionNums[optKey]++
 	}
 
-	for option, n := range options {
+	for option, n := range optionNums {
 		if n > 1 {
 			report.Report(pass, field.Tag, fmt.Sprintf("duplicate Gorm option %q", option))
 		}
