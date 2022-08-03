@@ -101,6 +101,3 @@ func TestFn() {
 		AmountOff uint32 `gorm:"amount_off"`
 	}
 }
-
-type TestInterface interface{}
-type TestString string

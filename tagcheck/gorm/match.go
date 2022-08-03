@@ -24,7 +24,7 @@ type GTag struct {
 // gorm tag full support list, key upper.
 var gormTagMap = map[string]GTag{}
 
-func init() {
+func initGormTagChecker() {
 	anyC := &anyChecker{}
 	uintC := uintChecker{}
 	// boolC := boolChecker{}

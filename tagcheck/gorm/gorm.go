@@ -9,6 +9,10 @@ import (
 	"honnef.co/go/tools/analysis/report"
 )
 
+func init() {
+	initGormTagChecker()
+}
+
 func CheckTag(pass *analysis.Pass, field *ast.Field, tag string) {
 	if len(tag) == 0 {
 		return
@@ -39,7 +43,7 @@ func CheckTag(pass *analysis.Pass, field *ast.Field, tag string) {
 
 		err := gt.checker.check(fvalue)
 		if err != nil {
-			report.Report(pass, field.Tag, fmt.Sprintf("not support Gorm value:%q option:%q", fvalue, fkey))
+			report.Report(pass, field.Tag, fmt.Sprintf("not support Gorm value:%q err:%q", fvalue, err.Error()))
 			continue
 		}
 
