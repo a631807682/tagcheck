@@ -3,8 +3,6 @@ package main
 import (
 	"database/sql"
 	"time"
-
-	"gorm.io/gorm"
 )
 
 // User has one `Account` (has one), many `Pets` (has many) and `Toys` (has many - polymorphic)
@@ -13,7 +11,6 @@ import (
 // His pet also has one Toy (has one - polymorphic)
 // NamedPet is a reference to a Named `Pets` (has many)
 type User struct {
-	gorm.Model
 	Name      string
 	Age       uint
 	Birthday  *time.Time
@@ -32,20 +29,17 @@ type User struct {
 }
 
 type Account struct {
-	gorm.Model
 	UserID sql.NullInt64
 	Number string
 }
 
 type Pet struct {
-	gorm.Model
 	UserID *uint
 	Name   string
 	Toy    Toy `gorm:"polymorphic:Owner;"`
 }
 
 type Toy struct {
-	gorm.Model
 	Name      string
 	OwnerID   string
 	OwnerType string
@@ -64,8 +58,8 @@ type Language struct {
 type Coupon struct {
 	ID               int              `gorm:"primarykey; size:255"`
 	AppliesToProduct []*CouponProduct `gorm:"foreignKey:CouponId;constraint:OnDelete:CASCADE"`
-	AmountOff        uint32           `gorm:"amount_off"`
-	PercentOff       float32          `gorm:"percent_off"`
+	AmountOff        uint32           `gorm:"amount_off"`  //@ diag(`not support Gorm option "amount_off"`)
+	PercentOff       float32          `gorm:"percent_off"` //@ diag(`not support Gorm option "percent_off"`)
 }
 
 type CouponProduct struct {
@@ -75,35 +69,32 @@ type CouponProduct struct {
 }
 
 type Order struct {
-	gorm.Model
 	Num      string
 	Coupon   *Coupon
 	CouponID string
 }
 
 type Parent struct {
-	gorm.Model
 	FavChildID uint
 	FavChild   *Child
 	Children   []*Child
 }
 
 type Child struct {
-	gorm.Model
-	Name     string `gorm:"column:name;column:nam"`
-	Name2    string `gorm:"column"`
+	Name     string `gorm:"column:name;column:nam"` //@ diag(`duplicate Gorm option "column"`)
+	Name2    string `gorm:"column"`                 //@ diag(`not support Gorm option "column" value "" can not be empty`)
 	Size     int    `gorm:"size:10"`
-	Size2    int    `gorm:"size:a"`
-	Size3    int    `gorm:"size:-1"`
-	Bool     bool   `gorm:"autoIncrement:fals"`
-	Def      string `gorm:"default:"`
+	Size2    int    `gorm:"size:a"`             //@ diag(`not support Gorm option "size" value "a" not an uint`)
+	Size3    int    `gorm:"size:-1"`            //@ diag(`not support Gorm option "size" value "-1" not an uint`)
+	Bool     bool   `gorm:"autoIncrement:fals"` //@ diag(`not support Gorm option "autoIncrement" value "fals" not empty or bool`)
+	Def      string `gorm:"default:"`           //@ diag(`not support Gorm option "default" value "" can not be empty`)
 	ParentID *uint
-	Parent   *Parent `gorm:"foreignKey"`
+	Parent   *Parent `gorm:"foreignKey"` //@ diag(`not support Gorm option "foreignKey" value "" can not be empty`)
 }
 
 func TestFn() {
 	type MyCoupon struct {
 		Id        int
-		AmountOff uint32 `gorm:"amount_off"`
+		AmountOff uint32 `gorm:"amount_off"` //@ diag(`not support Gorm option "amount_off"`)
 	}
 }
