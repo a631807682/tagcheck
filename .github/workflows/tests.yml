@@ -10,10 +10,10 @@ on:
 
 jobs:
   # Label of the container job
-  sqlite:
+  tagcheck:
     strategy:
       matrix:
-        go: ['1.17', '1.16']
+        go: ['1.18']
         platform: [ubuntu-latest] # can not run in windows OS
     runs-on: ${{ matrix.platform }}
 
