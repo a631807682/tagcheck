@@ -12,7 +12,7 @@ Go static analysis, detecting gorm tag bugs.
 * Check [models file](./tagcheck/testdata/src/gormtag) struct tag
 
     > tagcheck ./tagcheck/testdata/src/gormtag 
-* Warning
+* Warning message
 
     ```log
     tagcheck/testdata/src/gormtag/models.go:61:36: not support Gorm option "amount_off" (STC1001)
@@ -28,6 +28,6 @@ Go static analysis, detecting gorm tag bugs.
     ```
 
 ## TODO
-[x] Command Line
-[ ] Auto Fix
-[ ] Visual Studio Plugin
+* [x] Command Line
+* [ ] Auto Fix
+* [ ] Visual Studio Plugin
