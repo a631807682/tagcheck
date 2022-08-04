@@ -26,20 +26,22 @@ var gormTagMap = map[string]GTag{}
 
 func init() {
 	anyC := &anyChecker{}
-	uintC := uintChecker{}
-	// boolC := boolChecker{}
+	uintC := &uintChecker{}
+	intC := &intChecker{}
+	notEmptyC := &notEmptyChecker{}
+	emptyOrBoolC := &emptyOrBoolChecker{}
 
 	// https://gorm.io/docs/models.html
 	matchTags := []GTag{
 		{
 			key:      "column",
 			category: Table,
-			checker:  anyC,
+			checker:  notEmptyC,
 		},
 		{
 			key:      "type",
 			category: Table,
-			checker:  anyC,
+			checker:  notEmptyC,
 		},
 		{
 			key:      "size",
@@ -49,22 +51,22 @@ func init() {
 		{
 			key:      "primaryKey",
 			category: Table,
-			checker:  anyC,
+			checker:  emptyOrBoolC,
 		},
 		{
 			key:      "primary_key",
 			category: Table,
-			checker:  anyC,
+			checker:  emptyOrBoolC,
 		},
 		{
 			key:      "unique",
 			category: Table,
-			checker:  anyC,
+			checker:  emptyOrBoolC,
 		},
 		{
 			key:      "default",
 			category: Table,
-			checker:  anyC,
+			checker:  notEmptyC,
 		},
 		{
 			key:      "precision",
@@ -79,17 +81,22 @@ func init() {
 		{
 			key:      "not null",
 			category: Table,
-			checker:  anyC,
+			checker:  emptyOrBoolC,
+		},
+		{
+			key:      "notnull",
+			category: Table,
+			checker:  emptyOrBoolC,
 		},
 		{
 			key:      "autoIncrement",
 			category: Table,
-			checker:  anyC,
+			checker:  emptyOrBoolC,
 		},
 		{
 			key:      "autoIncrementIncrement",
 			category: Table,
-			checker:  anyC,
+			checker:  intC,
 		},
 		{
 			key:      "index",
@@ -104,12 +111,12 @@ func init() {
 		{
 			key:      "comment",
 			category: Table,
-			checker:  anyC,
+			checker:  notEmptyC,
 		},
 		{
 			key:      "serializer",
 			category: Internal,
-			checker:  anyC,
+			checker:  notEmptyC,
 		},
 		{
 			key:      "embedded",
@@ -119,7 +126,7 @@ func init() {
 		{
 			key:      "embeddedPrefix",
 			category: Internal,
-			checker:  anyC,
+			checker:  notEmptyC,
 		},
 		{
 			key:      "autoCreateTime",
@@ -134,7 +141,7 @@ func init() {
 		{
 			key:      "check",
 			category: Internal,
-			checker:  anyC,
+			checker:  notEmptyC,
 		},
 		{
 			key:      "<-",
@@ -154,47 +161,47 @@ func init() {
 		{
 			key:      "foreignKey",
 			category: Relation,
-			checker:  anyC,
+			checker:  notEmptyC,
 		},
 		{
 			key:      "references",
 			category: Relation,
-			checker:  anyC,
+			checker:  notEmptyC,
 		},
 		{
 			key:      "polymorphic",
 			category: Relation,
-			checker:  anyC,
+			checker:  notEmptyC,
 		},
 		{
 			key:      "many2many",
 			category: Relation,
-			checker:  anyC,
+			checker:  notEmptyC,
 		},
 		{
 			key:      "belongsto",
 			category: Relation,
-			checker:  anyC,
+			checker:  notEmptyC,
 		},
 		{
 			key:      "polymorphicValue",
 			category: Relation,
-			checker:  anyC,
+			checker:  notEmptyC,
 		},
 		{
 			key:      "joinForeignKey",
 			category: Relation,
-			checker:  anyC,
+			checker:  notEmptyC,
 		},
 		{
 			key:      "joinReferences",
 			category: Relation,
-			checker:  anyC,
+			checker:  notEmptyC,
 		},
 		{
 			key:      "constraint",
 			category: Relation,
-			checker:  anyC,
+			checker:  notEmptyC,
 		},
 	}
 

@@ -39,7 +39,7 @@ func CheckTag(pass *analysis.Pass, field *ast.Field, tag string) {
 
 		err := gt.checker.check(optVal)
 		if err != nil {
-			report.Report(pass, field.Tag, fmt.Sprintf("not support Gorm value:%q err:%q", optVal, err.Error()))
+			report.Report(pass, field.Tag, fmt.Sprintf("not support Gorm option %q value %q %s", optKey, optVal, err.Error()))
 			continue
 		}
 

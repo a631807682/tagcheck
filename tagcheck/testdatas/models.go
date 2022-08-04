@@ -91,8 +91,14 @@ type Parent struct {
 type Child struct {
 	gorm.Model
 	Name     string `gorm:"column:name;column:nam"`
+	Name2    string `gorm:"column"`
+	Size     int    `gorm:"size:10"`
+	Size2    int    `gorm:"size:a"`
+	Size3    int    `gorm:"size:-1"`
+	Bool     bool   `gorm:"autoIncrement:fals"`
+	Def      string `gorm:"default:"`
 	ParentID *uint
-	Parent   *Parent
+	Parent   *Parent `gorm:"foreignKey"`
 }
 
 func TestFn() {
