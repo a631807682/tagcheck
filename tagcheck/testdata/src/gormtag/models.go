@@ -96,5 +96,7 @@ func TestFn() {
 	type MyCoupon struct {
 		Id        int
 		AmountOff uint32 `gorm:"amount_off"` //@ diag(`not support Gorm option "amount_off"`)
+		//lint:ignore STC1001 customize option.
+		Customize string `gorm:"customize:true"` //@ diag(`not support Gorm option "customize"`)
 	}
 }
