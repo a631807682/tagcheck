@@ -11,7 +11,7 @@ Go static analysis, detecting gorm tag bugs.
 ## Usage
 * Check [models file](./tagcheck/testdata/src/gormtag) struct tag
 
-    > tagcheck ./tagcheck/testdata/src/gormtag 
+    > tagcheck -tests ./...
 * Warning message
 
     ```log
