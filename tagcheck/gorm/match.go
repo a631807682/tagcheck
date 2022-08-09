@@ -22,9 +22,9 @@ type GTag struct {
 }
 
 // gorm tag full support list, key upper.
-var gormTagMap = map[string]GTag{}
+var gormTagMap = loadGormTagChecker()
 
-func init() {
+func loadGormTagChecker() (gtm map[string]GTag) {
 	anyC := &anyChecker{}
 	uintC := &uintChecker{}
 	intC := &intChecker{}
@@ -205,7 +205,9 @@ func init() {
 		},
 	}
 
+	gtm = make(map[string]GTag, len(matchTags))
 	for _, gt := range matchTags {
-		gormTagMap[strings.ToUpper(gt.key)] = gt
+		gtm[strings.ToUpper(gt.key)] = gt
 	}
+	return
 }
