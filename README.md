@@ -6,12 +6,12 @@ Go static analysis, detecting gorm tag bugs.
 [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 [![Go.Dev reference](https://img.shields.io/badge/go.dev-reference-blue?logo=go&logoColor=white)](https://pkg.go.dev/github.com/a631807682/tagcheck)
 ## Install 
-> go install github.com/a631807682/tagcheck/cmd/tagcheck
+> go install github.com/a631807682/tagcheck/cmd/tc
 
 ## Usage
 * Check [models file](./tagcheck/testdata/src/gormtag) struct tag
 
-    > tagcheck -tests ./...
+    > tc -tests ./...
 * Warning message
 
     ```log
