@@ -3,7 +3,7 @@ module github.com/a631807682/tagcheck/cmd/tc
 go 1.19
 
 require (
-	github.com/a631807682/tagcheck v0.0.0-20221215125035-f7397e26853e
+	github.com/a631807682/tagcheck v0.0.0-20221215130218-449e55351fc8
 	golang.org/x/tools v0.1.12
 )
 
