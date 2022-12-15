@@ -7,18 +7,19 @@ import (
 	"golang.org/x/tools/go/analysis"
 	"golang.org/x/tools/go/analysis/passes/inspect"
 	"honnef.co/go/tools/analysis/code"
-	"honnef.co/go/tools/analysis/lint"
 	"honnef.co/go/tools/analysis/report"
 
 	"github.com/a631807682/tagcheck/tagcheck/gorm"
 )
 
-var Analyzers = lint.InitializeAnalyzers(Docs, map[string]*analysis.Analyzer{
-	"STC1001": {
-		Run:      CheckStructTags,
-		Requires: []*analysis.Analyzer{inspect.Analyzer},
-	},
-})
+const Doc = `` /* 162-byte string literal not displayed */
+
+var Analyzer = &analysis.Analyzer{
+	Name:     "tagcheck",
+	Doc:      Doc,
+	Run:      CheckStructTags,
+	Requires: []*analysis.Analyzer{inspect.Analyzer},
+}
 
 func CheckStructTags(pass *analysis.Pass) (interface{}, error) {
 	fn := func(node ast.Node) {

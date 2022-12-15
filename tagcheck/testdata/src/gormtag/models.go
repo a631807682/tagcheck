@@ -98,5 +98,6 @@ func TestFn() {
 		AmountOff uint32 `gorm:"amount_off"` //@ diag(`not support Gorm option "amount_off"`)
 		//lint:ignore STC1001 customize option.
 		Customize string `gorm:"customize:true"` //@ diag(`not support Gorm option "customize"`)
+		JSOn      string `json:",required"`      //@ diag(`not support Gorm option "customize"`)
 	}
 }

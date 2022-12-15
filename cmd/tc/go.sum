@@ -1,5 +1,4 @@
 github.com/BurntSushi/toml v0.4.1 h1:GaI7EiDXDRfa8VshkTj7Fym7ha+y8/XxIgD2okUIjLw=
-github.com/BurntSushi/toml v0.4.1/go.mod h1:CxXYINrC8qIiEnFrOxCa7Jy5BFHlXnUU2pbicEuybxQ=
 github.com/a631807682/tagcheck v0.0.0-20220809061057-f10dd739021c h1:0j+Tac3ia9bzuMt4FQqWCm2Qe1nffYfBxB7zHTcbCGQ=
 github.com/a631807682/tagcheck v0.0.0-20220809061057-f10dd739021c/go.mod h1:+l76V52ToY+tFvKNNL2i8urrprihD6nXfeq4TSQNIys=
 golang.org/x/exp/typeparams v0.0.0-20220218215828-6cf2b201936e h1:qyrTQ++p1afMkO4DPEeLGq/3oTsdlvdH4vqZUBWzUKM=
