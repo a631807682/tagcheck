@@ -1,4 +1,4 @@
-module github.com/a631807682/tagcheck/cmd/tc
+module github.com/a631807682/tagcheck/cmd/tagcheck
 
 go 1.19
 
