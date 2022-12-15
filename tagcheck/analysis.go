@@ -12,7 +12,7 @@ import (
 	"github.com/a631807682/tagcheck/tagcheck/gorm"
 )
 
-const Doc = `` /* 162-byte string literal not displayed */
+const Doc = `check for result of struct gorm tag`
 
 var Analyzer = &analysis.Analyzer{
 	Name:     "tagcheck",
